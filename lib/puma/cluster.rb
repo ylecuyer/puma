@@ -326,6 +326,9 @@ module Puma
         end
       end
 
+      logger = Logger.new('/tmp/yle-logfile.log')
+      logger.debug 'STARTING SERVER'
+
       server.run.join
 
       # Invoke any worker shutdown hooks so they can prevent the worker
