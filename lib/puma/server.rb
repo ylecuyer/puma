@@ -652,6 +652,8 @@ module Puma
       #
       after_reply = env[RACK_AFTER_REPLY] = []
 
+      env['puma.mark'] = '1'
+
       begin
         begin
           status, headers, res_body = @app.call(env)
