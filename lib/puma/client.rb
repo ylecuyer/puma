@@ -246,6 +246,7 @@ module Puma
 
     def setup_body
       @body_read_start = Process.clock_gettime(Process::CLOCK_MONOTONIC, :millisecond)
+      @env['puma.read_start'] = @body_read_start.to_s
 
       if @env[HTTP_EXPECT] == CONTINUE
         # TODO allow a hook here to check the headers before
