@@ -652,10 +652,12 @@ module Puma
       #
       after_reply = env[RACK_AFTER_REPLY] = []
 
+      @events.log "CYRIL WAS HERE"
       env['puma.mark'] = '1'
 
       begin
         begin
+          @events.log "CALLING WITH env: #{env.inspect}"
           status, headers, res_body = @app.call(env)
 
           return :async if req.hijacked
