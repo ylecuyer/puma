@@ -331,7 +331,10 @@ module Puma
                   @options[:wait_for_less_busy_worker].to_f)
 
                 io = begin
-                  sock.accept_nonblock
+                  iioo = sock.accept_nonblock
+                  puts "#"*150
+                  puts "accepted"
+                  iioo
                 rescue IO::WaitReadable
                   next
                 end
