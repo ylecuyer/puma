@@ -215,7 +215,7 @@ module Puma
     end
 
     def timeout!
-      puts "in_date_phase: #{in_date_phase}"
+      puts "in_date_phase: #{in_data_phase}"
       write_error(408) if in_data_phase
       raise ConnectionError
     end
