@@ -228,6 +228,7 @@ module Puma
         puts "%"*50
         # @io << ERROR_RESPONSE[status_code]
         @io << "coucoucoucoucoucoucou"
+        @io.flush
       rescue StandardError => e
         puts "#{e.class} #{e.message}"
       end
