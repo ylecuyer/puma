@@ -420,6 +420,7 @@ module Puma
         if @queue_requests &&
           !client.eagerly_finish
 
+          puts "queue timeout #{@first_data_timeout}"
           client.set_timeout(@first_data_timeout)
           if @reactor.add client
             close_socket = false
@@ -428,6 +429,7 @@ module Puma
         end
 
         with_force_shutdown(client) do
+          puts "with force timeout #{@first_data_timeout}"
           client.finish(@first_data_timeout)
         end
 
