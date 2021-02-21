@@ -291,9 +291,12 @@ module Puma
     # will wake up and again be checked to see if it's ready to be passed to the thread pool.
     def reactor_wakeup(client)
       shutdown = !@queue_requests
+      puts "reactor_wakeup shutdown:#{shutdown} timeout:#{client.timeout}"
       if client.try_to_finish || (shutdown && !client.can_close?)
+        puts "in if"
         @thread_pool << client
       elsif shutdown || client.timeout == 0
+        puts "in elseif"
         client.timeout!
       end
     rescue StandardError => e
