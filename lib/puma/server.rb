@@ -403,6 +403,8 @@ module Puma
     #
     # Return true if one or more requests were processed.
     def process_client(client, buffer)
+      puts "*"*150
+      puts "process_client"
       # Advertise this server into the thread
       Thread.current[ThreadLocalKey] = self
 
