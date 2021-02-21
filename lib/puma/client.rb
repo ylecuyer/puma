@@ -110,11 +110,15 @@ module Puma
 
     def set_timeout(val)
       @timeout_at = Process.clock_gettime(Process::CLOCK_MONOTONIC) + val
+      puts "next_timeout set at: #{@timeout_at}"
+      @timeout_at
     end
 
     # Number of seconds until the timeout elapses.
     def timeout
-      [@timeout_at - Process.clock_gettime(Process::CLOCK_MONOTONIC), 0].max
+      i = [@timeout_at - Process.clock_gettime(Process::CLOCK_MONOTONIC), 0].max
+      puts "Next time out in #{i}s"
+      i
     end
 
     def reset(fast_check=true)
