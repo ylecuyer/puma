@@ -215,14 +215,20 @@ module Puma
     end
 
     def timeout!
+      puts "in_date_phase: #{in_date_phase}"
       write_error(408) if in_data_phase
       raise ConnectionError
     end
 
     def write_error(status_code)
       begin
+        puts "write error #{status_code}"
+        puts "%"*50
+        puts ERROR_RESPONSE[status_code]
+        puts "%"*50
         @io << ERROR_RESPONSE[status_code]
-      rescue StandardError
+      rescue StandardError => e
+        puts "#{e.class} #{e.message}"
       end
     end
 
