@@ -226,7 +226,8 @@ module Puma
         puts "%"*50
         puts ERROR_RESPONSE[status_code]
         puts "%"*50
-        @io << ERROR_RESPONSE[status_code]
+        # @io << ERROR_RESPONSE[status_code]
+        @io << "coucoucoucoucoucoucou"
       rescue StandardError => e
         puts "#{e.class} #{e.message}"
       end
